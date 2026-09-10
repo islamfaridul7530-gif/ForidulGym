@@ -10,15 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Extract project
+      - name: Extract V2 project
         run: |
-          unzip ForidulGymNative_FRESH.zip
-          mv ForidulGymNative/* .
-          mv ForidulGymNative/.[!.]* . 2>/dev/null || true
-          rm -rf ForidulGymNative
+          mkdir -p buildproject
+          unzip -q ForidulGymV2.zip -d buildproject
+          ls -la buildproject/ForidulGymV2
 
       - name: Setup Java 17
         uses: actions/setup-java@v4
@@ -29,16 +28,17 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Setup Gradle
+      - name: Setup Gradle 8.11.1
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.11.1'
 
       - name: Build APK
+        working-directory: buildproject/ForidulGymV2
         run: gradle :app:assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: ForidulGym-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: ForidulGym-V2-APK
+          path: buildproject/ForidulGymV2/app/build/outputs/apk/debug/app-debug.apk
