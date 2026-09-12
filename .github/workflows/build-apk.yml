@@ -17,7 +17,7 @@ jobs:
         run: |
           mkdir -p buildproject
           unzip -q ForidulGymV11.zip -d buildproject
-          ls -la buildproject/ForidulGymV12
+          ls -la buildproject
 
       - name: Setup Java 17
         uses: actions/setup-java@v4
