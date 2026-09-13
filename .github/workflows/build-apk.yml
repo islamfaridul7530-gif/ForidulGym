@@ -16,7 +16,7 @@ jobs:
       - name: Extract V15 project
         run: |
           mkdir -p buildproject
-          unzip -q ForidulGymV19.zip -d buildproject
+          unzip -q ForidulGymV15.zip -d buildproject
           ls -la buildproject
 
       - name: Setup Java 17
