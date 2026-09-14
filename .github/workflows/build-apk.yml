@@ -34,7 +34,7 @@ jobs:
           gradle-version: '8.11.1'
 
       - name: Build APK
-        working-directory: buildproject/ForidulGymV1
+        working-directory: buildproject/ForidulGymV17
         run: gradle :app:assembleDebug
 
       - name: Upload APK
