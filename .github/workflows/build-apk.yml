@@ -13,10 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Extract V16 project
+      - name: Extract V17 project
         run: |
           mkdir -p buildproject
-          unzip -q ForidulGymV16.zip -d buildproject
+          unzip -q ForidulGymV17.zip -d buildproject
           ls -la buildproject
 
       - name: Setup Java 17
@@ -34,11 +34,11 @@ jobs:
           gradle-version: '8.11.1'
 
       - name: Build APK
-        working-directory: buildproject/ForidulGymV16
+        working-directory: buildproject/ForidulGymV1
         run: gradle :app:assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: ForidulGym-V16-APK
-          path: buildproject/ForidulGymV16/app/build/outputs/apk/debug/app-debug.apk
+          name: ForidulGym-V17-APK
+          path: buildproject/ForidulGymV17/app/build/outputs/apk/debug/app-debug.apk
